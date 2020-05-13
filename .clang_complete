@@ -1,0 +1,19 @@
+-IF:/Projects/ReflowStation/include
+-IF:/Projects/ReflowStation/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/cores/arduino
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/libraries/HID/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/libraries/SPI/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/framework-arduino-avr/libraries/Wire/src
+-IC:/Users/Сергей Речицкий/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include
+-IC:/Users/Сергей Речицкий/.platformio/packages/toolchain-atmelavr/lib/gcc/avr/5.4.0/include-fixed
+-IC:/Users/Сергей Речицкий/.platformio/packages/toolchain-atmelavr/avr/include
+-IC:/Users/Сергей Речицкий/.platformio/packages/tool-unity
+-DPLATFORMIO=40303
+-DARDUINO_AVR_NANO
+-DF_CPU=16000000L
+-DARDUINO_ARCH_AVR
+-DARDUINO=10808
+-D__AVR_ATmega328P__
