@@ -30,8 +30,7 @@ void loop() {
   bool shouldHeatHeatGun = heatGunTemp < heatGunTempMax;
 
   digitalWrite(HEATING_GUN_COOLING_FAN, HIGH);
-  //  digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
-  digitalWrite(HEATING_GUN_HEATING_ELEMENT, HIGH);
+  digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
 
   // diagnostics output
