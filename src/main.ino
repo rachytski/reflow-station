@@ -8,7 +8,7 @@
 #define HEATING_GUN_TEMP_SENSOR0 3
 #define SOLDERING_IRON_TEMP_SENSOR0 4
 
-LiquidCrystal lcd(10,9,8,7,6,5);
+LiquidCrystal lcd(12,11,10,9,8,7);
 
 void setup() {
   //initialize pins
