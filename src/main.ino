@@ -1,12 +1,17 @@
+#include <LiquidCrystal.h>
+
+// digital pins
 #define HEATING_GUN_COOLING_FAN 2
 #define SOLDERING_IRON_HEATING_ELEMENT 3
 #define HEATING_GUN_HEATING_ELEMENT 4
-// analogue inputs
+// analogue pins
 #define HEATING_GUN_TEMP_SENSOR0 3
 #define SOLDERING_IRON_TEMP_SENSOR0 4
 
+LiquidCrystal lcd(10,9,8,7,6,5);
+
 void setup() {
-  // initialize digital pin LEDd_BUILTIN as an output.
+  //initialize pins
   pinMode(HEATING_GUN_COOLING_FAN, OUTPUT);
   pinMode(HEATING_GUN_HEATING_ELEMENT, OUTPUT);
   pinMode(SOLDERING_IRON_HEATING_ELEMENT, OUTPUT);
@@ -15,11 +20,16 @@ void setup() {
   digitalWrite(HEATING_GUN_COOLING_FAN, HIGH);
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, LOW);
+
+  lcd.begin(16, 2);
   
   Serial.begin(9600);
 }
 
 void loop() {
+  lcd.setCursor(0, 1);
+  lcd.print("there, there...");
+  
   const int solderingIronTempMax = 180;
   const int heatGunTempMax = 250;
   
