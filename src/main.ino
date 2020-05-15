@@ -1,4 +1,5 @@
-#include <LiquidCrystal.h>
+#include "state.hpp"
+#include "lcd_1602_ui.hpp"
 
 // digital pins
 #define HEATING_GUN_COOLING_FAN 2
@@ -8,7 +9,6 @@
 #define HEATING_GUN_TEMP_SENSOR0 3
 #define SOLDERING_IRON_TEMP_SENSOR0 4
 
-LiquidCrystal lcd(12,11,10,9,8,7);
 
 void setup() {
   //initialize pins
@@ -21,30 +21,35 @@ void setup() {
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, LOW);
 
-  lcd.begin(16, 2);
+  setupUI();
   
   Serial.begin(9600);
 }
 
+State state;
+
 void loop() {
-  const int solderingIronTempMax = 180;
-  const int heatGunTempMax = 250;
+  state.solderingIronTempMax = 180;
+  state.heatGunTempMax = 250;
   
-  int solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
-  int heatGunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
+  state.solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
+  state.heatGunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
   
-  bool shouldHeatSolderingIron = solderingIronTemp < solderingIronTempMax;
-  bool shouldHeatHeatGun = heatGunTemp < heatGunTempMax;
+  bool shouldHeatSolderingIron = state.solderingIronTemp < state.solderingIronTempMax;
+  bool shouldHeatHeatGun = state.heatGunTemp < state.heatGunTempMax;
 
   digitalWrite(HEATING_GUN_COOLING_FAN, HIGH);
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
 
-  // diagnostics output
-  char buf[1024];
-  sprintf(buf, "Iron: %d, Gun: %d", solderingIronTemp, heatGunTemp);
-  lcd.setCursor(0, 0);
-  lcd.print(buf);
-  Serial.println(buf);
-  Serial.println(buf);
+  int sw = digitalRead(6);
+  int dt = digitalRead(5);
+  int clk = digitalRead(13);
+
+  reportState(state);
+  
+//  sprintf(buf, "SW:%d,DT:%d,CLK:%d", sw, dt, clk);
+//  lcd.setCursor(0, 1);
+//  lcd.print(buf);
+//  Serial.println(buf);
 }
