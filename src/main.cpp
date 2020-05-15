@@ -34,7 +34,6 @@ void loop() {
   
   state.solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
   state.heatGunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
-  strcpy(state.message, "there, there...");
   
   bool shouldHeatSolderingIron = state.solderingIronTemp < state.solderingIronTempMax;
   bool shouldHeatHeatGun = state.heatGunTemp < state.heatGunTempMax;
