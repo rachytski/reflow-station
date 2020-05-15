@@ -1,3 +1,4 @@
+#include <Arduino.h>
 #include "state.hpp"
 #include "lcd_1602_ui.hpp"
 
@@ -8,7 +9,6 @@
 // analogue pins
 #define HEATING_GUN_TEMP_SENSOR0 3
 #define SOLDERING_IRON_TEMP_SENSOR0 4
-
 
 void setup() {
   //initialize pins
@@ -34,6 +34,7 @@ void loop() {
   
   state.solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
   state.heatGunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
+  strcpy(state.message, "there, there...");
   
   bool shouldHeatSolderingIron = state.solderingIronTemp < state.solderingIronTempMax;
   bool shouldHeatHeatGun = state.heatGunTemp < state.heatGunTempMax;
