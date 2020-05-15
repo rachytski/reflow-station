@@ -1,6 +1,6 @@
--IF:/Projects/reflow-station/include
--IF:/Projects/reflow-station/src
--IF:/Projects/reflow-station/.pio/libdeps/nanoatmega328new/LiquidCrystal_ID887/src
+-If:/Projects/reflow-station/include
+-If:/Projects/reflow-station/src
+-If:/Projects/reflow-station/.pio/libdeps/nanoatmega328new/LiquidCrystal_ID887/src
 -IC:/.platformio/packages/framework-arduino-avr/cores/arduino
 -IC:/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs
 -IC:/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src
