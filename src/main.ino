@@ -27,15 +27,12 @@ void setup() {
 }
 
 void loop() {
-  lcd.setCursor(0, 1);
-  lcd.print("there, there...");
-  
   const int solderingIronTempMax = 180;
   const int heatGunTempMax = 250;
   
   int solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
   int heatGunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
-
+  
   bool shouldHeatSolderingIron = solderingIronTemp < solderingIronTempMax;
   bool shouldHeatHeatGun = heatGunTemp < heatGunTempMax;
 
@@ -46,5 +43,8 @@ void loop() {
   // diagnostics output
   char buf[1024];
   sprintf(buf, "Iron: %d, Gun: %d", solderingIronTemp, heatGunTemp);
+  lcd.setCursor(0, 0);
+  lcd.print(buf);
+  Serial.println(buf);
   Serial.println(buf);
 }
