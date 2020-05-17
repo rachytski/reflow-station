@@ -4,9 +4,9 @@
 
 struct ViewModel {
   property<unsigned> solderingIronTempMax;
-  property<unsigned> solderingIronTemp;
+  ro_property<unsigned> solderingIronTemp;
   property<unsigned> heatgunTempMax;
-  property<unsigned> heatgunTemp;
+  ro_property<unsigned> heatgunTemp;
   property<unsigned> heatgunFanPWM;
   unsigned buttonPos;
 };

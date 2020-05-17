@@ -38,9 +38,9 @@ void updateView(ViewModel &viewModel) {
   
   sprintf(buf,
           "S=%3d%c%3d",
-          viewModel.solderingIronTemp,
+          viewModel.solderingIronTemp.get(),
           ironSep,
-          viewModel.solderingIronTempMax);
+          viewModel.solderingIronTempMax.get());
   buf[31] = 0;
   
   lcd.setCursor(0, 0);
@@ -49,11 +49,11 @@ void updateView(ViewModel &viewModel) {
   
   sprintf(buf,
           "H=%3d%c%3d F%c%3d",
-          viewModel.heatgunTemp,
+          viewModel.heatgunTemp.get(),
           heatGunSep,
-          viewModel.heatgunTempMax,
+          viewModel.heatgunTempMax.get(),
           fanSep,
-          viewModel.heatgunFanPWM);
+          viewModel.heatgunFanPWM.get());
   buf[31] = 0;
 
   lcd.setCursor(0, 1);
