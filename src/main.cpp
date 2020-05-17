@@ -16,13 +16,6 @@ void setup() {
 }
 
 void loop() {
+  updateController(model);  
   updateView(viewModel);
-  updateController(model);
-
-  // wiring models manually, such updates should be automated 
-  viewModel.solderingIronTemp = model.solderingIronTemp;
-  viewModel.heatgunTemp = model.heatgunTemp;
-  model.solderingIronTempMax = viewModel.solderingIronTempMax;
-  model.heatgunTempMax = viewModel.heatgunTempMax;
-  model.heatgunFanPWM = viewModel.heatgunFanPWM;
 }

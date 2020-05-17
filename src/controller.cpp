@@ -13,19 +13,21 @@ void initController(Model& model) {
   pinMode(HEATING_GUN_TEMP_SENSOR0, INPUT);
   pinMode(SOLDERING_IRON_TEMP_SENSOR0, INPUT);
 
-  model.solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
-  model.heatgunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
-  model.heatgunFanPWM = 255;
+  model.solderingIronTemp.set(analogRead(SOLDERING_IRON_TEMP_SENSOR0));
+  model.heatgunTemp.set(analogRead(HEATING_GUN_TEMP_SENSOR0));
+  model.heatgunFanPWM.set(255);
 }
 
 void updateController(Model& model) {
   // TODO: implement PID controller for both iron and heatgun
 
-  model.solderingIronTemp = analogRead(SOLDERING_IRON_TEMP_SENSOR0);
-  model.heatgunTemp = analogRead(HEATING_GUN_TEMP_SENSOR0);
-  model.heatgunFanPWM -= 1;
+  model.solderingIronTemp.set(analogRead(SOLDERING_IRON_TEMP_SENSOR0));
+  model.heatgunTemp.set(analogRead(HEATING_GUN_TEMP_SENSOR0));
+
+  bool shouldHeatSolderingIron = model.solderingIronTemp.get() < model.solderingIronTempMax.get();
+  bool shouldHeatHeatGun = model.heatgunTemp.get() < model.heatgunTempMax.get();
     
-  digitalWrite(HEATING_GUN_COOLING_FAN, model.heatgunFanPWM);
-  digitalWrite(HEATING_GUN_HEATING_ELEMENT, (model.heatgunTemp < model.heatgunTempMax) ? HIGH : LOW);
-  digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, (model.solderingIronTemp < model.solderingIronTempMax) ? HIGH : LOW);
+  digitalWrite(HEATING_GUN_COOLING_FAN, model.heatgunFanPWM.get());
+  digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
+  digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
 }
