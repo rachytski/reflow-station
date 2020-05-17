@@ -16,6 +16,7 @@ void test_propertyUpdatesRightAfterConnection() {
   property<unsigned> dst;
   src.connect(&dst);
 
+  TEST_ASSERT_EQUAL(src.get(), 7);
   TEST_ASSERT_EQUAL(dst.get(), 7);
 }
 
@@ -30,6 +31,7 @@ void test_propertyUnidirectionalConnection() {
 
   dst.set(12);
 
+  TEST_ASSERT_EQUAL(dst.get(), 12);
   TEST_ASSERT_EQUAL(src.get(), 10);
 }
 
@@ -38,13 +40,14 @@ void test_propertyBidirectionalConnection() {
   src.set(12);
 
   property<unsigned> dst;
-  src.connect(&dst, true);
+  src.connect_bi(&dst);
 
   TEST_ASSERT_EQUAL(dst.get(), 12);
 
   dst.set(14);
 
   TEST_ASSERT_EQUAL(src.get(), 14);
+  TEST_ASSERT_EQUAL(dst.get(), 14);
 }
 
 void test_propertyOldConnectionDoesntWork() {
@@ -55,6 +58,7 @@ void test_propertyOldConnectionDoesntWork() {
   src.connect(&dst);
 
   TEST_ASSERT_EQUAL(dst.get(), 16);
+  TEST_ASSERT_EQUAL(src.get(), 16);
 
   property<unsigned> dst2;
   src.connect(&dst2);
@@ -62,11 +66,12 @@ void test_propertyOldConnectionDoesntWork() {
   src.set(18);
 
   TEST_ASSERT_EQUAL(dst2.get(), 18);
+  TEST_ASSERT_EQUAL(src.get(), 18);  
   TEST_ASSERT_EQUAL(dst.get(), 16);
 }
 
 void setup() {
-  delay(2000);
+  delay(500);
 }
 
 void loop() {
