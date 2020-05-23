@@ -13,5 +13,5 @@
 #define CLK_PIN 13
 
 // analogue pins for thermal sensors
-#define HEATING_GUN_TEMP_SENSOR0 3
-#define SOLDERING_IRON_TEMP_SENSOR0 4
+#define HEATING_GUN_TEMP_SENSOR0 A3
+#define SOLDERING_IRON_TEMP_SENSOR0 A4
