@@ -8,7 +8,7 @@
 LiquidCrystal lcd(12,11,10,9,8,7);
 
 unsigned viewUpdateTicks = 0;
-unsigned viewUpdateCycles = 200;
+unsigned viewUpdateCycles = 100;
 
 void initView(ViewModel& viewModel) {
   // ui-related code
@@ -24,11 +24,11 @@ void initView(ViewModel& viewModel) {
 }
 
 void updateView(ViewModel &viewModel) {
-//  if (viewUpdateTicks++ % viewUpdateCycles) {
-//    return;
-//  }
+  if (viewUpdateTicks++ % viewUpdateCycles) {
+    return;
+  }
 
-//  viewUpdateTicks %= viewUpdateCycles;
+  viewUpdateTicks %= viewUpdateCycles;
 
   char buf[32];
   
