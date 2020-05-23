@@ -3,8 +3,8 @@
 // physical pinout for the Arduino Nano
 
 // control pins
-#define HEATING_GUN_COOLING_FAN 2
-#define SOLDERING_IRON_HEATING_ELEMENT 3
+#define HEATING_GUN_COOLING_FAN 3
+#define SOLDERING_IRON_HEATING_ELEMENT 2
 #define HEATING_GUN_HEATING_ELEMENT 4
 
 // rotary encoder pins
