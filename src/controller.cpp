@@ -26,8 +26,8 @@ void updateController(Model& model) {
 
   bool shouldHeatSolderingIron = model.solderingIronTemp.get() < model.solderingIronTempMax.get();
   bool shouldHeatHeatGun = model.heatgunTemp.get() < model.heatgunTempMax.get();
-    
-  digitalWrite(HEATING_GUN_COOLING_FAN, model.heatgunFanPWM.get());
+
+  analogWrite(HEATING_GUN_COOLING_FAN, model.heatgunFanPWM.get());
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
 }
