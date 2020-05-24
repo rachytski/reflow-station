@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Arduino.h>
+
 #include "property.hpp"
 
 struct Model {
@@ -10,6 +12,8 @@ struct Model {
   property<unsigned> heatgunFanPWM;
   property<int> mode;
   int swButtonState = HIGH;
+  int dtButtonState = HIGH;
+  int clkButtonState = HIGH;
 };
 
 void initModel(Model& model);

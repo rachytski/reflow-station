@@ -5,13 +5,50 @@
 #include "pinout.hpp"
 #include "model.hpp"
 
+template <typename T> T clamp(T const&val, T const &min, T const &max) {
+  T t = val;
+  if (t < min) {
+    t = min;
+  }
+  if (t > max) {
+    t = max;
+  }
+  return t;
+}
+
 void updateInput(Model &model) {
   int swButtonState = digitalRead(SW_PIN);
 
   if (swButtonState == LOW && (swButtonState != model.swButtonState)) {
     model.mode.set((model.mode.get() + 2) % 4 - 1);
   }
+
+  int dirMultiplier = 0;
+  
+  int clkButtonState = digitalRead(CLK_PIN);
+  int dtButtonState = digitalRead(DT_PIN);
+  if (clkButtonState != model.clkButtonState) {
+    dirMultiplier = dtButtonState != clkButtonState ? 1 : -1;
+  }
+
+  if (model.mode.get() == 0) {
+    int newVal = model.solderingIronTempMax.get() + dirMultiplier * 10;
+    model.solderingIronTempMax.set(clamp(newVal, 0, 600));
+  }
+
+  if (model.mode.get() == 1) {
+    int newVal = model.heatgunTempMax.get() + dirMultiplier * 10;
+    model.heatgunTempMax.set(clamp(newVal, 0, 700));
+  }
+
+  if (model.mode.get() == 2) {
+    int newVal = model.heatgunFanPWM.get() + dirMultiplier * 10;    
+    model.heatgunFanPWM.set(clamp(newVal, 0, 255));
+  }
+
   model.swButtonState = swButtonState;
+  model.dtButtonState = dtButtonState;
+  model.clkButtonState = clkButtonState;
 }
 
 void initController(Model& model) {
@@ -49,3 +86,4 @@ void updateController(Model& model) {
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
 }
+  
