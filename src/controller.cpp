@@ -9,6 +9,10 @@ void updateInput(Model &model) {
 }
 
 void initController(Model& model) {
+  pinMode(SW_PIN, INPUT_PULLUP);
+  pinMode(DT_PIN, INPUT_PULLUP);
+  pinMode(CLK_PIN, INPUT_PULLUP);
+  
   pinMode(HEATING_GUN_COOLING_FAN, OUTPUT);
   pinMode(HEATING_GUN_HEATING_ELEMENT, OUTPUT);
   pinMode(SOLDERING_IRON_HEATING_ELEMENT, OUTPUT);

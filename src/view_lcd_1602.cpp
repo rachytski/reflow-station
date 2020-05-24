@@ -11,10 +11,6 @@ unsigned viewUpdateTicks = 0;
 unsigned viewUpdateCycles = 100;
 
 void initView(ViewModel& viewModel) {
-  // ui-related code
-  pinMode(SW_PIN, INPUT_PULLUP);
-  pinMode(DT_PIN, INPUT_PULLUP);
-  pinMode(CLK_PIN, INPUT_PULLUP);
   lcd.begin(16, 2);
 
   updateView(viewModel);
