@@ -8,9 +8,9 @@
 #define HEATING_GUN_HEATING_ELEMENT 4
 
 // rotary encoder pins
-#define SW_PIN 6
+#define SW_PIN 7
 #define DT_PIN 5
-#define CLK_PIN 13
+#define CLK_PIN 6
 
 // analogue pins for thermal sensors
 #define HEATING_GUN_TEMP_SENSOR0 A3

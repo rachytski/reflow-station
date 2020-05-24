@@ -5,7 +5,7 @@
 #include "view_model.hpp"
 #include "pinout.hpp"
 
-LiquidCrystal lcd(12,11,10,9,8,7);
+LiquidCrystal lcd(12,11,10,9,8,13);
 
 unsigned viewUpdateTicks = 0;
 unsigned viewUpdateCycles = 100;
