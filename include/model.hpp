@@ -9,6 +9,7 @@ struct Model {
   property<unsigned> heatgunTemp;
   property<unsigned> heatgunFanPWM;
   property<int> mode;
+  int swButtonState = HIGH;
 };
 
 void initModel(Model& model);

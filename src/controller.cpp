@@ -6,6 +6,12 @@
 #include "model.hpp"
 
 void updateInput(Model &model) {
+  int swButtonState = digitalRead(SW_PIN);
+
+  if (swButtonState == LOW && (swButtonState != model.swButtonState)) {
+    model.mode.set((model.mode.get() + 2) % 4 - 1);
+  }
+  model.swButtonState = swButtonState;
 }
 
 void initController(Model& model) {
@@ -36,6 +42,9 @@ void updateController(Model& model) {
   bool shouldHeatSolderingIron = model.solderingIronTemp.get() < model.solderingIronTempMax.get();
   bool shouldHeatHeatGun = model.heatgunTemp.get() < model.heatgunTempMax.get();
 
+  shouldHeatHeatGun &= model.mode.get() == 1;
+  shouldHeatSolderingIron &= model.mode.get() == 0;
+  
   analogWrite(HEATING_GUN_COOLING_FAN, model.heatgunFanPWM.get());
   digitalWrite(HEATING_GUN_HEATING_ELEMENT, shouldHeatHeatGun ? HIGH : LOW);
   digitalWrite(SOLDERING_IRON_HEATING_ELEMENT, shouldHeatSolderingIron ? HIGH : LOW);
