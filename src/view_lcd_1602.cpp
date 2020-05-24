@@ -32,9 +32,9 @@ void updateView(ViewModel &viewModel) {
 
   char buf[32];
   
-  char ironSep = viewModel.buttonPos == 0 ? '*' : '-';
-  char heatGunSep = viewModel.buttonPos == 1 ? '*' : '-';
-  char fanSep = viewModel.buttonPos == 2 ? '*' : '=';
+  char ironSep = viewModel.mode.get() == 0 ? '*' : '-';
+  char heatGunSep = viewModel.mode.get() == 1 ? '*' : '-';
+  char fanSep = viewModel.mode.get() == 2 ? '*' : '=';
   
   sprintf(buf,
           "S=%3d%c%3d",

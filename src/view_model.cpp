@@ -8,7 +8,5 @@ void initViewModel(ViewModel &viewModel, Model &model) {
   model.heatgunFanPWM.connect(&viewModel.heatgunFanPWM);
   model.solderingIronTemp.connect(&viewModel.solderingIronTemp);
   model.heatgunTemp.connect(&viewModel.heatgunTemp);
-  
-  // maybe read some ui state from the EEPROM, like buttonPos e.t.c
-  viewModel.buttonPos = 0;
+  model.mode.connect_bi(&viewModel.mode);
 }

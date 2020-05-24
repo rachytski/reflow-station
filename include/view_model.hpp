@@ -8,7 +8,7 @@ struct ViewModel {
   property<unsigned> heatgunTempMax;
   ro_property<unsigned> heatgunTemp;
   property<unsigned> heatgunFanPWM;
-  unsigned buttonPos;
+  property<int> mode;
 };
 
 struct Model;

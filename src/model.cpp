@@ -7,4 +7,5 @@ void initModel(Model &model) {
   model.solderingIronTemp.set(0);
   model.heatgunTemp.set(0);
   model.heatgunFanPWM.set(0);
+  model.mode.set(-1);
 }

@@ -8,6 +8,7 @@ struct Model {
   property<unsigned> heatgunTempMax;
   property<unsigned> heatgunTemp;
   property<unsigned> heatgunFanPWM;
+  property<int> mode;
 };
 
 void initModel(Model& model);
