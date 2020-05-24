@@ -9,6 +9,8 @@ Model model;
 ViewModel viewModel;
 
 void setup() {
+  Serial.begin(9600);
+  
   initModel(model);
   initController(model);
   initViewModel(viewModel, model);

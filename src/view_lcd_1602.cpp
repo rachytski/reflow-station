@@ -15,9 +15,6 @@ void initView(ViewModel& viewModel) {
   pinMode(SW_PIN, INPUT_PULLUP);
   pinMode(DT_PIN, INPUT_PULLUP);
   pinMode(CLK_PIN, INPUT_PULLUP);
-
-  Serial.begin(9600);
-  
   lcd.begin(16, 2);
 
   updateView(viewModel);
@@ -45,7 +42,6 @@ void updateView(ViewModel &viewModel) {
   
   lcd.setCursor(0, 0);
   lcd.write(buf);
-  Serial.println(buf);
   
   sprintf(buf,
           "H=%3d%c%3d F%c%3d",
@@ -58,5 +54,4 @@ void updateView(ViewModel &viewModel) {
 
   lcd.setCursor(0, 1);
   lcd.write(buf);
-  Serial.println(buf);
 }
