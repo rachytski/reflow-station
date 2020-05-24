@@ -5,6 +5,9 @@
 #include "pinout.hpp"
 #include "model.hpp"
 
+void updateInput(Model &model) {
+}
+
 void initController(Model& model) {
   pinMode(HEATING_GUN_COOLING_FAN, OUTPUT);
   pinMode(HEATING_GUN_HEATING_ELEMENT, OUTPUT);
@@ -19,6 +22,8 @@ void initController(Model& model) {
 }
 
 void updateController(Model& model) {
+  updateInput(model);
+  
   // TODO: implement PID controller for both iron and heatgun
 
   model.solderingIronTemp.set(analogRead(SOLDERING_IRON_TEMP_SENSOR0));
