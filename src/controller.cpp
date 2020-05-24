@@ -68,13 +68,24 @@ void initController(Model& model) {
   model.heatgunFanPWM.set(255);
 }
 
+unsigned compensateSolderingIronThermalTransfer(int solderingIronTempRaw) {
+  // linear fit of the following {from, to} measurements:
+  // {150, 90}, {200, 120}, {250, 160}, {300, 180}, {350, 220}, {400, 260},
+  // {450, 280}, {500, 310}
+  return unsigned(clamp(int(0.638095 * solderingIronTempRaw - 4.88095), 0, 1000));
+}
+
+unsigned compensateHeatgunTemp(int heatgunTempRaw) {
+  return heatgunTempRaw;
+}
+
 void updateController(Model& model) {
   updateInput(model);
   
   // TODO: implement PID controller for both iron and heatgun
 
-  model.solderingIronTemp.set(analogRead(SOLDERING_IRON_TEMP_SENSOR0));
-  model.heatgunTemp.set(analogRead(HEATING_GUN_TEMP_SENSOR0));
+  model.solderingIronTemp.set(compensateSolderingIronThermalTransfer(analogRead(SOLDERING_IRON_TEMP_SENSOR0)));
+  model.heatgunTemp.set(compensateHeatgunTemp(analogRead(HEATING_GUN_TEMP_SENSOR0)));
 
   bool shouldHeatSolderingIron = model.solderingIronTemp.get() < model.solderingIronTempMax.get();
   bool shouldHeatHeatGun = model.heatgunTemp.get() < model.heatgunTempMax.get();
